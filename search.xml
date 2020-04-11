@@ -8,7 +8,6 @@
         <category>test</category>
       </categories>
       <tags>
-        <tag>test</tag>
         <tag>技术</tag>
       </tags>
   </entry>
@@ -29,5 +28,11 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+      </tags>
   </entry>
 </search>
