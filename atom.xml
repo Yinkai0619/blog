@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.yinkai.me/"/>
-  <updated>2020-04-11T09:47:53.889Z</updated>
+  <updated>2020-04-11T16:31:44.582Z</updated>
   <id>http://blog.yinkai.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.yinkai.me/2020/04/11/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/"/>
     <id>http://blog.yinkai.me/2020/04/11/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/</id>
     <published>2020-04-11T09:36:45.000Z</published>
-    <updated>2020-04-11T09:47:53.889Z</updated>
+    <updated>2020-04-11T16:31:44.582Z</updated>
     
     <content type="html"><![CDATA[<h1 id="test-blog1"><a href="#test-blog1" class="headerlink" title="test blog1"></a>test blog1</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Hello yinkai"</span>)</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -37,12 +37,10 @@
     
       <category term="test" scheme="http://blog.yinkai.me/categories/test/"/>
     
-      <category term="test1" scheme="http://blog.yinkai.me/categories/test/test1/"/>
-    
     
       <category term="test" scheme="http://blog.yinkai.me/tags/test/"/>
     
-      <category term="blog" scheme="http://blog.yinkai.me/tags/blog/"/>
+      <category term="技术" scheme="http://blog.yinkai.me/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

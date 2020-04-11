@@ -6,11 +6,10 @@
     <content><![CDATA[<h1 id="test-blog1"><a href="#test-blog1" class="headerlink" title="test blog1"></a>test blog1</h1><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">print(<span class="string">"Hello yinkai"</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>test</category>
-        <category>test1</category>
       </categories>
       <tags>
         <tag>test</tag>
-        <tag>blog</tag>
+        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
