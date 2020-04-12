@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.yinkai.me/"/>
-  <updated>2020-04-11T16:42:22.273Z</updated>
+  <updated>2020-04-12T09:13:26.334Z</updated>
   <id>http://blog.yinkai.me/</id>
   
   <author>
@@ -17,37 +17,98 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>测试博客1</title>
-    <link href="http://blog.yinkai.me/2020/04/11/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/"/>
-    <id>http://blog.yinkai.me/2020/04/11/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/</id>
-    <published>2020-04-11T09:36:45.000Z</published>
-    <updated>2020-04-11T16:42:22.273Z</updated>
+    <title>Install Configure Data Services on Linux</title>
+    <link href="http://blog.yinkai.me/posts/3019291912/"/>
+    <id>http://blog.yinkai.me/posts/3019291912/</id>
+    <published>2020-04-12T08:51:21.000Z</published>
+    <updated>2020-04-12T09:13:26.334Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="test-blog1"><a href="#test-blog1" class="headerlink" title="test blog1"></a>test blog1</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Hello yinkai"</span>)</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="Install-Configure-Data-Services-on-Linux"><a href="#Install-Configure-Data-Services-on-Linux" class="headerlink" title="Install Configure Data Services on Linux"></a>Install Configure Data Services on Linux</h1><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="OS环境"><a href="#OS环境" class="headerlink" title="OS环境"></a>OS环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install compat-libstdc++-33 compat-libstdc++-33.i686</span><br><span class="line">yum install glibc glibc.i686</span><br><span class="line">yum install libstdc++ libstdc++.i686</span><br><span class="line">yum install libX11</span><br></pre></td></tr></table></figure><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd dsadm</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"dsadm4PASS"</span> | passwd --stdin dsadm</span><br><span class="line">usermod -G sysoper dsadm</span><br><span class="line">usermod -G wheel dsadm</span><br></pre></td></tr></table></figure><h3 id="修改安装程序属主"><a href="#修改安装程序属主" class="headerlink" title="修改安装程序属主"></a>修改安装程序属主</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R dsadm ds</span><br></pre></td></tr></table></figure><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装DS主要分为两步：</p><ol><li>安装IPS ( Information Platform Service )</li><li>安装DS4.2</li></ol><h3 id="安装IPS"><a href="#安装IPS" class="headerlink" title="安装IPS"></a>安装IPS</h3><h3 id="安装DS"><a href="#安装DS" class="headerlink" title="安装DS"></a>安装DS</h3><p><em>未完待续…</em></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;test-blog1&quot;&gt;&lt;a href=&quot;#test-blog1&quot; class=&quot;headerlink&quot; title=&quot;test blog1&quot;&gt;&lt;/a&gt;test blog1&lt;/h1&gt;&lt;figure class=&quot;highlight py&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;
+        &lt;h1 id=&quot;Install-Configure-Data-Services-on-Linux&quot;&gt;&lt;a href=&quot;#Install-Configure-Data-Services-on-Linux&quot; class=&quot;headerlink&quot; title=&quot;Install Conf
       
     
     </summary>
     
     
-      <category term="test" scheme="http://blog.yinkai.me/categories/test/"/>
+      <category term="技术" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="技术" scheme="http://blog.yinkai.me/tags/%E6%8A%80%E6%9C%AF/"/>
+      <category term="SAP" scheme="http://blog.yinkai.me/tags/SAP/"/>
+    
+      <category term="DS" scheme="http://blog.yinkai.me/tags/DS/"/>
+    
+      <category term="Data Services" scheme="http://blog.yinkai.me/tags/Data-Services/"/>
     
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://blog.yinkai.me/1970/01/01/hello-world/"/>
-    <id>http://blog.yinkai.me/1970/01/01/hello-world/</id>
-    <published>1970-01-01T00:00:00.000Z</published>
-    <updated>2020-04-11T16:42:17.757Z</updated>
+    <title>Linux 下连接蓝牙设备</title>
+    <link href="http://blog.yinkai.me/posts/1977779135/"/>
+    <id>http://blog.yinkai.me/posts/1977779135/</id>
+    <published>2020-04-12T08:14:48.000Z</published>
+    <updated>2020-04-12T08:46:52.048Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用蓝牙过程"><a href="#使用蓝牙过程" class="headerlink" title="使用蓝牙过程"></a>使用蓝牙过程</h1><ol><li>启动蓝牙；</li><li>扫描可用的蓝牙设备；</li><li>连接蓝牙设备（经过测试，在使用蓝牙鼠标不需要连接，扫描后直接与之配对即可）；</li><li>配对蓝牙设备。</li></ol><h1 id="蓝牙管理工具：bluetoothctl"><a href="#蓝牙管理工具：bluetoothctl" class="headerlink" title="蓝牙管理工具：bluetoothctl"></a>蓝牙管理工具：bluetoothctl</h1><p><strong><em>此处以连接蓝牙鼠标为例说明：</em></strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -i</span><br><span class="line"><span class="comment"># 启动蓝牙管理工具</span></span><br><span class="line"><span class="comment"># bluetoothctl</span></span><br><span class="line">[NEW] Controller 4C:34:88:94:D7:C4 yinkai-ThinkPad-X250 [default]</span><br><span class="line">[NEW] Device D0:16:B4:4D:47:9D Yinkai-Honor10</span><br><span class="line"></span><br><span class="line">[bluetooth]<span class="comment"># help</span></span><br><span class="line">Available commands:</span><br><span class="line">  list                       List available controllers</span><br><span class="line">  show [ctrl]                Controller information</span><br><span class="line">  select &lt;ctrl&gt;              Select default controller</span><br><span class="line">  devices                    List available devices</span><br><span class="line">  paired-devices             List paired devices</span><br><span class="line">  power &lt;on/off&gt;             Set controller power</span><br><span class="line">  pairable &lt;on/off&gt;          Set controller pairable mode</span><br><span class="line">  discoverable &lt;on/off&gt;      Set controller discoverable mode</span><br><span class="line">  agent &lt;on/off/capability&gt;  Enable/<span class="built_in">disable</span> agent with given capability</span><br><span class="line">  default-agent              Set agent as the default one</span><br><span class="line">  <span class="built_in">set</span>-scan-filter-uuids [uuid1 uuid2 ...] Set scan filter uuids</span><br><span class="line">  <span class="built_in">set</span>-scan-filter-rssi [rssi] Set scan filter rssi, and clears pathloss</span><br><span class="line">  <span class="built_in">set</span>-scan-filter-pathloss [pathloss] Set scan filter pathloss, and clears rssi</span><br><span class="line">  <span class="built_in">set</span>-scan-filter-transport [transport] Set scan filter transport</span><br><span class="line">  <span class="built_in">set</span>-scan-filter-clear      Clears discovery filter.</span><br><span class="line">  scan &lt;on/off&gt;              Scan <span class="keyword">for</span> devices</span><br><span class="line">  info [dev]                 Device information</span><br><span class="line">  pair [dev]                 Pair with device</span><br><span class="line">  trust [dev]                Trust device</span><br><span class="line">  untrust [dev]              Untrust device</span><br><span class="line">  block [dev]                Block device</span><br><span class="line">  unblock [dev]              Unblock device</span><br><span class="line">  remove &lt;dev&gt;               Remove device</span><br><span class="line">  connect &lt;dev&gt;              Connect device</span><br><span class="line">  disconnect [dev]           Disconnect device</span><br><span class="line">  list-attributes [dev]      List attributes</span><br><span class="line">  select-attribute &lt;attribute&gt; Select attribute</span><br><span class="line">  attribute-info [attribute] Select attribute</span><br><span class="line">  <span class="built_in">read</span>                       Read attribute value</span><br><span class="line">  write &lt;data=[xx xx ...]&gt;   Write attribute value</span><br><span class="line">  notify &lt;on/off&gt;            Notify attribute value</span><br><span class="line">  register-profile &lt;UUID ...&gt; Register profile to connect</span><br><span class="line">  unregister-profile         Unregister profile</span><br><span class="line">  version                    Display version</span><br><span class="line">  quit                       Quit program</span><br><span class="line"></span><br><span class="line">[bluetooth]<span class="comment"># show</span></span><br><span class="line">Controller 4C:34:88:94:D7:C4</span><br><span class="line">Name: yinkai-ThinkPad-X250</span><br><span class="line">Alias: yinkai-ThinkPad-X250</span><br><span class="line">Class: 0x000000</span><br><span class="line">Powered: yes</span><br><span class="line">Discoverable: yes</span><br><span class="line">Pairable: yes</span><br><span class="line">UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: OBEX File Transfer        (00001106-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: OBEX Object Push          (00001105-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: IrMC Sync                 (00001104-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Audio Sink                (0000110b-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Audio Source              (0000110a-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Vendor specific           (00005005-0000-1000-8000-0002ee000001)</span><br><span class="line">UUID: Message Notification Se.. (00001133-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Phonebook Access Server   (0000112f-0000-1000-8000-00805f9b34fb)</span><br><span class="line">UUID: Message Access Server     (00001132-0000-1000-8000-00805f9b34fb)</span><br><span class="line">Modalias: usb:v1D6Bp0246d0525</span><br><span class="line">Discovering: no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可用的蓝牙设备</span></span><br><span class="line">[bluetooth]<span class="comment"># devices     </span></span><br><span class="line">Device D0:16:B4:4D:47:9D Yinkai-Honor10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启蓝牙设备</span></span><br><span class="line">[bluetooth]<span class="comment"># power off     </span></span><br><span class="line">Changing power off succeeded</span><br><span class="line">[CHG] Controller 4C:34:88:94:D7:C4 Powered: no</span><br><span class="line">[CHG] Controller 4C:34:88:94:D7:C4 Discovering: no</span><br><span class="line">[bluetooth]<span class="comment"># power on</span></span><br><span class="line">Changing power on succeeded</span><br><span class="line">[CHG] Controller 4C:34:88:94:D7:C4 Powered: yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扫描可用的蓝牙设备</span></span><br><span class="line">[bluetooth]<span class="comment"># scan on</span></span><br><span class="line">Discovery started</span><br><span class="line">[CHG] Controller 4C:34:88:94:D7:C4 Discovering: yes</span><br><span class="line">[NEW] Device CF:D0:F4:9B:8D:F7 M720 Triathlon</span><br><span class="line">[NEW] Device 22:22:58:10:EB:91 M8S PRO L</span><br><span class="line">[NEW] Device C8:28:32:0D:AB:5E MI BT18 BLE</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 RSSI: -59</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 RSSI: -48</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止扫描</span></span><br><span class="line">[bluetooth]<span class="comment"># scan off</span></span><br><span class="line">[CHG] Device C8:28:32:0D:AB:5E RSSI is nil</span><br><span class="line">[CHG] Device 22:22:58:10:EB:91 RSSI is nil</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 RSSI is nil</span><br><span class="line">Discovery stopped</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次查看可用的蓝牙设备</span></span><br><span class="line">[bluetooth]<span class="comment"># devices </span></span><br><span class="line">Device D0:16:B4:4D:47:9D Yinkai-Honor10</span><br><span class="line">Device CF:D0:F4:9B:8D:F7 M720 Triathlon</span><br><span class="line">Device 22:22:58:10:EB:91 M8S PRO L</span><br><span class="line">Device C8:28:32:0D:AB:5E MI BT18 BLE</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配对蓝牙设备（设备地址）</span></span><br><span class="line">[bluetooth]<span class="comment"># pair CF:D0:F4:9B:8D:F7</span></span><br><span class="line">Attempting to pair with CF:D0:F4:9B:8D:F7</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 Connected: yes</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 Paired: yes</span><br><span class="line">Pairing successful</span><br><span class="line">[CHG] Device CF:D0:F4:9B:8D:F7 Modalias: usb:v046DpB015d0009</span><br><span class="line">[DEL] Device 22:22:58:10:EB:91 M8S PRO L</span><br><span class="line">[DEL] Device C8:28:32:0D:AB:5E MI BT18 BLE</span><br><span class="line">[M720 Triathlon]<span class="comment"># exit</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;使用蓝牙过程&quot;&gt;&lt;a href=&quot;#使用蓝牙过程&quot; class=&quot;headerlink&quot; title=&quot;使用蓝牙过程&quot;&gt;&lt;/a&gt;使用蓝牙过程&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;启动蓝牙；&lt;/li&gt;
+&lt;li&gt;扫描可用的蓝牙设备；&lt;/li&gt;
+&lt;li&gt;连接蓝牙设备（经过测试，在
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="bluetoothctl" scheme="http://blog.yinkai.me/tags/bluetoothctl/"/>
+    
+      <category term="蓝牙" scheme="http://blog.yinkai.me/tags/%E8%93%9D%E7%89%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown语法介绍</title>
+    <link href="http://blog.yinkai.me/posts/2392901311/"/>
+    <id>http://blog.yinkai.me/posts/2392901311/</id>
+    <published>2020-04-12T08:09:26.000Z</published>
+    <updated>2020-04-12T08:40:00.413Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h1><h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><h1 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h1><p><strong>这是加粗的文字</strong><br><br><em>这是倾斜的文字</em>`<br><br><strong><em>这是斜体加粗的文字</em></strong><br><br><del>这是加删除线的文字</del></p><h1 id="三、分割线"><a href="#三、分割线" class="headerlink" title="三、分割线"></a>三、分割线</h1><hr><hr><h1 id="四、引用"><a href="#四、引用" class="headerlink" title="四、引用"></a>四、引用</h1><blockquote><p>这是引用的内容</p><blockquote><p>这是引用的内容</p><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><p>这是引用的内容</p></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote><h1 id="五、图片"><a href="#五、图片" class="headerlink" title="五、图片"></a>五、图片</h1><h1 id="六、代码"><a href="#六、代码" class="headerlink" title="六、代码"></a>六、代码</h1><h2 id="单行代码"><a href="#单行代码" class="headerlink" title="单行代码"></a>单行代码</h2><h2 id="多行代码"><a href="#多行代码" class="headerlink" title="多行代码"></a>多行代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&#39;Hello World&#39;)</span><br></pre></td></tr></table></figure><h2 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h2><p>插入程序代码的方式有两种：使用反引号 `（~ 键）、使用缩进（Tab）。</p><ul><li>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</li><li>插入多行代码，分别使用三个反引号（```）包裹多行代码。或者使用缩进。</li></ul><h3 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h3><p>在一般的段落文字中，可以使用反引号来标记或插入代码区段。<br><br>示例：<br><br>C语言里的函数 <code>scanf()</code> 怎么使用？<br></p><p><code>create database DATABASE_NAME;</code></p><h3 id="多行代码-1"><a href="#多行代码-1" class="headerlink" title="多行代码"></a>多行代码</h3><p>在需要高亮的代码块的前一行及后一行使用三个反引号 ```（~ 键），同时第一行反引号后面，输入码块所使用的语言，实现代码高亮。<br>比如高亮 python3 代码块：</p> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrintHello</span>:</span></span><br><span class="line">    print(<span class="string">"Hello, World!"</span>);</span><br></pre></td></tr></table></figure><h3 id="缩进式插入多行代码"><a href="#缩进式插入多行代码" class="headerlink" title="缩进式插入多行代码"></a>缩进式插入多行代码</h3><p>注意：</p><ul><li>缩进式插入前方必须有空行；</li><li>缩进 4 个空格或是 1 个制表符；</li><li>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。<br>代码：</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span>  <span class="meta-string">&lt;stdio.h&gt;`</span></span></span><br><span class="line">int main(void)`</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello world\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="七、超链接"><a href="#七、超链接" class="headerlink" title="七、超链接"></a>七、超链接</h1><h1 id="八、表格"><a href="#八、表格" class="headerlink" title="八、表格"></a>八、表格</h1><h1 id="九、列表："><a href="#九、列表：" class="headerlink" title="九、列表："></a>九、列表：</h1><h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><p>语法：无序列表用 - + * 任何一种都可以</p><ul><li>列表内容</li></ul><ul><li>列表内容</li></ul><ul><li>列表内容</li></ul><p>注意：- + * 跟内容之间都要有一个空格</p><h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>语法：<br>    数字加点</p><ol><li>列表内容</li><li>列表内容</li><li>列表内容</li></ol><p>注意：序号跟内容之间要有空格</p><h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>上一级和下一级之间敲三个空格即可：</p><ul><li>一级无序列表内容<ul><li>二级无序列表内容<ul><li>三级无序列表内容</li></ul></li></ul></li></ul><h1 id="十、流程图"><a href="#十、流程图" class="headerlink" title="十、流程图"></a>十、流程图</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一、标题&quot;&gt;&lt;a href=&quot;#一、标题&quot; class=&quot;headerlink&quot; title=&quot;一、标题&quot;&gt;&lt;/a&gt;一、标题&lt;/h1&gt;&lt;h1 id=&quot;这是一级标题&quot;&gt;&lt;a href=&quot;#这是一级标题&quot; class=&quot;headerlink&quot; title=&quot;这是一级标
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Markdown" scheme="http://blog.yinkai.me/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello Hexo</title>
+    <link href="http://blog.yinkai.me/posts/2708806665/"/>
+    <id>http://blog.yinkai.me/posts/2708806665/</id>
+    <published>2020-04-11T09:36:45.000Z</published>
+    <updated>2020-04-12T08:04:37.344Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
@@ -61,10 +122,47 @@
     </summary>
     
     
-      <category term="Hexo" scheme="http://blog.yinkai.me/categories/Hexo/"/>
+      <category term="技术" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="test" scheme="http://blog.yinkai.me/tags/test/"/>
+      <category term="Hexo" scheme="http://blog.yinkai.me/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web Service</title>
+    <link href="http://blog.yinkai.me/posts/895680827/"/>
+    <id>http://blog.yinkai.me/posts/895680827/</id>
+    <published>2016-05-14T09:09:49.000Z</published>
+    <updated>2020-04-12T09:18:21.915Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://yinkai-blogs.oss-cn-beijing.aliyuncs.com/images/Web-Service.png" alt="Web-Service"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://yinkai-blogs.oss-cn-beijing.aliyuncs.com/images/Web-Service.png&quot; alt=&quot;Web-Service&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="Web" scheme="http://blog.yinkai.me/categories/%E6%8A%80%E6%9C%AF/Web/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.yinkai.me/tags/Linux/"/>
+    
+      <category term="Socket" scheme="http://blog.yinkai.me/tags/Socket/"/>
+    
+      <category term="Web" scheme="http://blog.yinkai.me/tags/Web/"/>
+    
+      <category term="URI" scheme="http://blog.yinkai.me/tags/URI/"/>
+    
+      <category term="URL" scheme="http://blog.yinkai.me/tags/URL/"/>
     
   </entry>
   
