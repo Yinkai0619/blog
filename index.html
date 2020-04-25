@@ -192,6 +192,8 @@
 
       
       <h1 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h1><h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><h1 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h1><p><strong>这是加粗的文字</strong><br><br><em>这是倾斜的文字</em>`<br><br><strong><em>这是斜体加粗的文字</em></strong><br><br><del>这是加删除线的文字</del></p>
+<h2 id="字体颜色"><a href="#字体颜色" class="headerlink" title="字体颜色"></a>字体颜色</h2><p>浅红色文字：<font color="#dd0000">浅红色文字：</font><br /><br>深红色文字：<font color="#660000">深红色文字</font><br /><br>浅绿色文字：<font color="#00dd00">浅绿色文字</font><br /><br>深绿色文字：<font color="#006600">深绿色文字</font><br /><br>浅蓝色文字：<font color="#0000dd">浅蓝色文字</font><br /><br>深蓝色文字：<font color="#000066">深蓝色文字</font><br /><br>浅黄色文字：<font color="#dddd00">浅黄色文字</font><br /><br>深黄色文字：<font color="#666600">深黄色文字</font><br /><br>浅青色文字：<font color="#00dddd">浅青色文字</font><br /><br>深青色文字：<font color="#006666">深青色文字</font><br /><br>浅紫色文字：<font color="#dd00dd">浅紫色文字</font><br /><br>深紫色文字：<font color="#660066">深紫色文字</font><br /> </p>
+<h2 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h2><p>size为1：<font size="1">size为1</font><br /><br>size为2：<font size="2">size为2</font><br /><br>size为3：<font size="3">size为3</font><br /><br>size为4：<font size="4">size为4</font><br /><br>size为10：<font size="10">size为10</font><br /> </p>
 <h1 id="三、分割线"><a href="#三、分割线" class="headerlink" title="三、分割线"></a>三、分割线</h1><hr>
 <hr>
 <h1 id="四、引用"><a href="#四、引用" class="headerlink" title="四、引用"></a>四、引用</h1><blockquote>
@@ -363,6 +365,211 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-使用SSL-TSL证书加密通讯过程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/posts/3697389350/"
+    >使用SSL/TSL证书加密通讯过程</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/posts/3697389350/" class="article-date">
+  <time datetime="2016-10-26T05:14:02.000Z" itemprop="datePublished">2016-10-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/">安全</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><strong><font color="#dd0000" size="5">本文以Bob和Alice安全通讯为例说明</font></strong></p>
+<p><font color="#dd0000" size="5">Bob&lt;———&gt;Alice  </font></p>
+<h1 id="1-验证证书"><a href="#1-验证证书" class="headerlink" title="1. 验证证书"></a>1. 验证证书</h1><p><em>Bob要和Alice安全通信首先要取得对方的公钥，即对方的证书，并验证证书的合法性。验证过程和内容如下：</em></p>
+<p>1）、用CA的公钥（双方已知）解密对方证书中CA的签名；能解密说明证书来原可靠；</p>
+<p>2）、用证书中标记的“签名算法”来计算证书的相关信息，并将散列计算的结果与证书“发行者签名”解密的结果（证书特征码）进行比较，如果一致说明证书完整性可靠；</p>
+<p>3）、检查证书的有效期限是否在合法范围内，防止证书过期；</p>
+<p>4）、验证证书的 “主体名称” 和预通信的人是否对应；</p>
+<p>5）、检查证书是否被吊销；</p>
+<p><em>以上验证成功则说明对方证书可靠，并信任该证书。</em></p>
+<p><strong>取得对方证书（即公钥）后进行如下操作：</strong></p>
+<h1 id="2-加密"><a href="#2-加密" class="headerlink" title="2. 加密"></a>2. 加密</h1><p>1)、Bob对明文数据进行散列计算，提取出数据指纹（特征码，也叫信息摘要）；</p>
+<p>2)、Bob使用自己的私钥对该数据指纹进行加密，生成数字签名，并将该数字签名附加在明文数据之后；</p>
+<p>3)、Bob使用一个一次性的对称加密算法密钥对明文和数字签名进行加密，生成密文；</p>
+<p>4)、Bob再使用Alice的公钥对对称加密算法的密钥进行加密，生成数字信封；</p>
+<p>5)、Bob将密文和数字信封打包发送给Alice；</p>
+<h1 id="3-解密"><a href="#3-解密" class="headerlink" title="3. 解密"></a>3. 解密</h1><p>1)、Alice收到数据（密文+数字信封）后，使用自己的私钥解密数字信封，得到对称加密算法的密钥；</p>
+<p>2)、使用对称加密密钥解密密文，得到明文数据和数字签名。保证了数据的私密性；</p>
+<p>3)、使用Bob的公钥解密数字签名，得到明文的数据指纹（特征码）。如果能解出，说明数据为Bob发送，保证了数据的不可否认性；</p>
+<p>4)、Alice使用同样的散列算法对明文计算得出数据指纹（特征码），并与Bob计算的数据指纹进行比对，如果一致，说明数据没有被篡改。保证了数据的完整性.  </p>
+<p><img src="https://yinkai-blogs.oss-cn-beijing.aliyuncs.com/images/TLS.png" alt="TLS"></p>
+<!-- <center>  -->
+<p><em>使用SSL/TSL证书加密通讯示意图</em> </p>
+<!-- </center> -->
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSL-TLS/" rel="tag">SSL/TLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A0%E5%AF%86/" rel="tag">加密</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-在Linux下创建并使用私有CA为客户端颁发证书" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/posts/2939447081/"
+    >在Linux下创建并使用私有CA为客户端颁发证书</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/posts/2939447081/" class="article-date">
+  <time datetime="2016-10-25T05:55:43.000Z" itemprop="datePublished">2016-10-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/">安全</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>应用服务器在使用证书前需向RA（证书注册机构）提出申请，RA对申请人信息进行核验，核验成功后由CA进行签署并生成证书。为了保证CA签署的证书可信，CA在签署客户证书前需要先生成自签证书，客户端会使用CA的证书来验证CA所签署的证书。</p>
+<ul>
+<li><h1 id="证书颁发过程"><a href="#证书颁发过程" class="headerlink" title="证书颁发过程"></a>证书颁发过程</h1><ol>
+<li><p>申请人向RA递交证书申请；</p>
+</li>
+<li><p>RA会要求申请人递交自己的公钥和其它相关信息；</p>
+</li>
+<li><p>RA核验该申请方的真实信息；</p>
+</li>
+<li><p>核验通过后，RA会将请求转交给CA进行签署。由CA对这些信息进行散列，并用自己的私钥对散列结果进行加密，生成数字签名；</p>
+</li>
+<li><p>将申请方的信息和数字签名一起封装到证书内，颁发给申请人；</p>
+</li>
+</ol>
+</li>
+<li><h1 id="证书申请及签署实例"><a href="#证书申请及签署实例" class="headerlink" title="证书申请及签署实例"></a>证书申请及签署实例</h1><p>  <em>使用自建CA签署证书时CA和RA可合并</em></p>
+<ul>
+<li><h2 id="工具：OpenSSL"><a href="#工具：OpenSSL" class="headerlink" title="工具：OpenSSL"></a>工具：OpenSSL</h2></li>
+<li><h2 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程:"></a>操作过程:</h2><ol>
+<li><p>构建私有CA：</p>
+<p>(1) 检查安装openssl;  </p>
+<p>(2) 根据openssl的配置文件（/etc/pki/tls/openssl.cnf）创建所需要的文件；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># touch /etc/pki/CA/index.txt          #创建证书索引文件</span></span><br><span class="line"><span class="comment"># echo 01 &gt; /etc/pki/CA/serial        #设置证书的序列号</span></span><br></pre></td></tr></table></figure>
+
+<p>(3) 自签证书：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> (<span class="built_in">umask</span> 077; openssl genrsa -out /etc/pki/CA/private/cakey.pem 2048)        <span class="comment">#生成CA的私钥</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> openssl req -new -x509 -key /etc/pki/CA/private/cakey.pem -days 3650 -out /etc/pki/CA/cacert.pem            <span class="comment">#生成自签证书签署请求，只有在生成自签证书时使用-x509选项</span></span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter '.', the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [XX]:CN</span><br><span class="line">State or Province Name (full name) []:Beijing</span><br><span class="line">Locality Name (eg, city) [Default City]:Beijing</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:Yinkai</span><br><span class="line">Organizational Unit Name (eg, section) []:Ops</span><br><span class="line">Common Name (eg, your name or your server's hostname) []:ca.yinkai.site   </span><br><span class="line">Email Address []:caadmin@yinkai.site</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为客户端签发证书：</p>
+<p> (1) 客户端提交证书签署请求：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (umask 077; openssl genrsa -out /etc/httpd/ssl/httpd.key 2048)                #客户端生成私钥</span></span><br><span class="line"><span class="comment"># openssl req -new -key /etc/httpd/ssl/httpd.key -days 365 -out /etc/httpd/ssl/httpd.csr            #客户端生成证书签署请求文件 </span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [XX]:CN</span><br><span class="line">State or Province Name (full name) []:Beijing</span><br><span class="line">Locality Name (eg, city) [Default City]:Beijing</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:Yinkai</span><br><span class="line">Organizational Unit Name (eg, section) []:Tech</span><br><span class="line">Common Name (eg, your name or your server<span class="string">'s hostname) []:www.yinkai.site        #此处的公共名需与实际使用的服务器访问名称一致</span></span><br><span class="line"><span class="string">Email Address []:caadmin@yinkai.site</span></span><br><span class="line"><span class="string">Please enter the following '</span>extra<span class="string">' attributes</span></span><br><span class="line"><span class="string">to be sent with your certificate request</span></span><br><span class="line"><span class="string">A challenge password []:</span></span><br><span class="line"><span class="string">An optional company name []:</span></span><br></pre></td></tr></table></figure>
+
+<p> (2) 将证书签署请求发给RA（此处RA与CA一致）:</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp /etc/httpd/ssl/httpd.csr root@192.168.1.71:/tmp</span></span><br></pre></td></tr></table></figure>
+
+<p> (3) CA签署请求：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># openssl ca -in /tmp/httpd.csr -days 365 -out /etc/pki/CA/certs/httpd.crt</span></span><br><span class="line">Using configuration from /etc/pki/tls/openssl.cnf</span><br><span class="line">Check that the request matches the signature</span><br><span class="line">Signature ok</span><br><span class="line">Certificate Details:</span><br><span class="line">        Serial Number: 1 (0x1)</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Oct 29 06:53:10 2016 GMT</span><br><span class="line">            Not After : Oct 29 06:53:10 2017 GMT</span><br><span class="line">        Subject:</span><br><span class="line">            countryName               = CN</span><br><span class="line">            stateOrProvinceName       = Beijing</span><br><span class="line">            organizationName          = Yinkai</span><br><span class="line">            organizationalUnitName    = Tech</span><br><span class="line">            commonName                = www.yinkai.site</span><br><span class="line">            emailAddress              = caadmin@yinkai.site</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Basic Constraints: </span><br><span class="line">                CA:FALSE</span><br><span class="line">            Netscape Comment: </span><br><span class="line">                OpenSSL Generated Certificate</span><br><span class="line">            X509v3 Subject Key Identifier: </span><br><span class="line">                4B:08:90:15:E3:FE:E2:44:AF:BD:C2:79:F9:13:4A:B8:FB:70:BF:4A</span><br><span class="line">            X509v3 Authority Key Identifier: </span><br><span class="line">                keyid:32:43:7A:30:8C:2E:22:87:85:63:04:F1:37:D4:8C:4D:3B:41:10:B8</span><br><span class="line">Certificate is to be certified until Oct 29 06:53:10 2017 GMT (365 days)</span><br><span class="line">Sign the certificate? [y/n]:y</span><br><span class="line">1 out of 1 certificate requests certified, commit? [y/n]y</span><br><span class="line">Write out database with 1 new entries</span><br><span class="line">Data Base Updated</span><br></pre></td></tr></table></figure>
+<p> (4) 将证书发送给请求客户端：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scp /etc/pki/CA/certs/httpd.crt root@192.168.1.61:/etc/httpd/ssl/</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CA/" rel="tag">CA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSL-TLS/" rel="tag">SSL/TLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%81%E4%B9%A6/" rel="tag">证书</a></li></ul>
 
 
     </footer>

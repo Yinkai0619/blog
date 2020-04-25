@@ -7,13 +7,13 @@
 <head>
   <meta charset="utf-8" />
    
-  <meta name="keywords" content="Hexo,blog,yinkai,linux,python" />
+  <meta name="keywords" content="yinkai,linux,python" />
    
   <meta name="description" content="Yinkai&#39;s Blog" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Hello Hexo |  Yinkai&#39;s Blog
+    在Linux下创建并使用私有CA为客户端颁发证书 |  Yinkai&#39;s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -41,7 +41,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-hello-Hexo" class="article article-type-post" itemscope
+  <article id="post-在Linux下创建并使用私有CA为客户端颁发证书" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -49,7 +49,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Hello Hexo
+  在Linux下创建并使用私有CA为客户端颁发证书
 </h1>
  
 
@@ -58,12 +58,12 @@
 
     
     <div class="article-meta">
-      <a href="/posts/2708806665/" class="article-date">
-  <time datetime="2020-04-11T09:36:45.000Z" itemprop="datePublished">2020-04-11</time>
+      <a href="/posts/2939447081/" class="article-date">
+  <time datetime="2016-10-25T05:55:43.000Z" itemprop="datePublished">2016-10-25</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/">安全</a>
   </div>
 
       
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">73</span>
+            <span class="post-count">946</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
@@ -107,22 +107,58 @@
       
 
       
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <p>应用服务器在使用证书前需向RA（证书注册机构）提出申请，RA对申请人信息进行核验，核验成功后由CA进行签署并生成证书。为了保证CA签署的证书可信，CA在签署客户证书前需要先生成自签证书，客户端会使用CA的证书来验证CA所签署的证书。</p>
+<ul>
+<li><h1 id="证书颁发过程"><a href="#证书颁发过程" class="headerlink" title="证书颁发过程"></a>证书颁发过程</h1><ol>
+<li><p>申请人向RA递交证书申请；</p>
+</li>
+<li><p>RA会要求申请人递交自己的公钥和其它相关信息；</p>
+</li>
+<li><p>RA核验该申请方的真实信息；</p>
+</li>
+<li><p>核验通过后，RA会将请求转交给CA进行签署。由CA对这些信息进行散列，并用自己的私钥对散列结果进行加密，生成数字签名；</p>
+</li>
+<li><p>将申请方的信息和数字签名一起封装到证书内，颁发给申请人；</p>
+</li>
+</ol>
+</li>
+<li><h1 id="证书申请及签署实例"><a href="#证书申请及签署实例" class="headerlink" title="证书申请及签署实例"></a>证书申请及签署实例</h1><p>  <em>使用自建CA签署证书时CA和RA可合并</em></p>
+<ul>
+<li><h2 id="工具：OpenSSL"><a href="#工具：OpenSSL" class="headerlink" title="工具：OpenSSL"></a>工具：OpenSSL</h2></li>
+<li><h2 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程:"></a>操作过程:</h2><ol>
+<li><p>构建私有CA：</p>
+<p>(1) 检查安装openssl;  </p>
+<p>(2) 根据openssl的配置文件（/etc/pki/tls/openssl.cnf）创建所需要的文件；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># touch /etc/pki/CA/index.txt          #创建证书索引文件</span></span><br><span class="line"><span class="comment"># echo 01 &gt; /etc/pki/CA/serial        #设置证书的序列号</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>(3) 自签证书：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> (<span class="built_in">umask</span> 077; openssl genrsa -out /etc/pki/CA/private/cakey.pem 2048)        <span class="comment">#生成CA的私钥</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> openssl req -new -x509 -key /etc/pki/CA/private/cakey.pem -days 3650 -out /etc/pki/CA/cacert.pem            <span class="comment">#生成自签证书签署请求，只有在生成自签证书时使用-x509选项</span></span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter '.', the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [XX]:CN</span><br><span class="line">State or Province Name (full name) []:Beijing</span><br><span class="line">Locality Name (eg, city) [Default City]:Beijing</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:Yinkai</span><br><span class="line">Organizational Unit Name (eg, section) []:Ops</span><br><span class="line">Common Name (eg, your name or your server's hostname) []:ca.yinkai.site   </span><br><span class="line">Email Address []:caadmin@yinkai.site</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为客户端签发证书：</p>
+<p> (1) 客户端提交证书签署请求：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (umask 077; openssl genrsa -out /etc/httpd/ssl/httpd.key 2048)                #客户端生成私钥</span></span><br><span class="line"><span class="comment"># openssl req -new -key /etc/httpd/ssl/httpd.key -days 365 -out /etc/httpd/ssl/httpd.csr            #客户端生成证书签署请求文件 </span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [XX]:CN</span><br><span class="line">State or Province Name (full name) []:Beijing</span><br><span class="line">Locality Name (eg, city) [Default City]:Beijing</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:Yinkai</span><br><span class="line">Organizational Unit Name (eg, section) []:Tech</span><br><span class="line">Common Name (eg, your name or your server<span class="string">'s hostname) []:www.yinkai.site        #此处的公共名需与实际使用的服务器访问名称一致</span></span><br><span class="line"><span class="string">Email Address []:caadmin@yinkai.site</span></span><br><span class="line"><span class="string">Please enter the following '</span>extra<span class="string">' attributes</span></span><br><span class="line"><span class="string">to be sent with your certificate request</span></span><br><span class="line"><span class="string">A challenge password []:</span></span><br><span class="line"><span class="string">An optional company name []:</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p> (2) 将证书签署请求发给RA（此处RA与CA一致）:</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp /etc/httpd/ssl/httpd.csr root@192.168.1.71:/tmp</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p> (3) CA签署请求：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># openssl ca -in /tmp/httpd.csr -days 365 -out /etc/pki/CA/certs/httpd.crt</span></span><br><span class="line">Using configuration from /etc/pki/tls/openssl.cnf</span><br><span class="line">Check that the request matches the signature</span><br><span class="line">Signature ok</span><br><span class="line">Certificate Details:</span><br><span class="line">        Serial Number: 1 (0x1)</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Oct 29 06:53:10 2016 GMT</span><br><span class="line">            Not After : Oct 29 06:53:10 2017 GMT</span><br><span class="line">        Subject:</span><br><span class="line">            countryName               = CN</span><br><span class="line">            stateOrProvinceName       = Beijing</span><br><span class="line">            organizationName          = Yinkai</span><br><span class="line">            organizationalUnitName    = Tech</span><br><span class="line">            commonName                = www.yinkai.site</span><br><span class="line">            emailAddress              = caadmin@yinkai.site</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Basic Constraints: </span><br><span class="line">                CA:FALSE</span><br><span class="line">            Netscape Comment: </span><br><span class="line">                OpenSSL Generated Certificate</span><br><span class="line">            X509v3 Subject Key Identifier: </span><br><span class="line">                4B:08:90:15:E3:FE:E2:44:AF:BD:C2:79:F9:13:4A:B8:FB:70:BF:4A</span><br><span class="line">            X509v3 Authority Key Identifier: </span><br><span class="line">                keyid:32:43:7A:30:8C:2E:22:87:85:63:04:F1:37:D4:8C:4D:3B:41:10:B8</span><br><span class="line">Certificate is to be certified until Oct 29 06:53:10 2017 GMT (365 days)</span><br><span class="line">Sign the certificate? [y/n]:y</span><br><span class="line">1 out of 1 certificate requests certified, commit? [y/n]y</span><br><span class="line">Write out database with 1 new entries</span><br><span class="line">Data Base Updated</span><br></pre></td></tr></table></figure>
+<p> (4) 将证书发送给请求客户端：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scp /etc/pki/CA/certs/httpd.crt root@192.168.1.61:/etc/httpd/ssl/</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 
       
       <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
       
     </div>
     
@@ -184,14 +220,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aQXKDQAwFUd//0mSblA3uLw2pQtOsXEBgHgtFGun1wsfx6zg7837/9Zn389fPXHDIkCHjsYzj8iAM8mLCJm85fY4MGTI2YJBQmC6IX71+FwnoMmTIkHH96LNASZZOAr0MGTJkrGWkCSUPvjJkyJDBA19tWeQqf74MGTJ2Y/Bd9///fUt/Q4YMGY9iHOGRBtxa4zNelQwZMkYzeIDjiR0ZpKhtsX15rwwZMjZgdIrPICyC0bHrDbjWl5YhQ8YDGWu/R2eQIt3m+3NGhgwZoxlkiSR1qw1b8N2zBRmuDBkyRjDSQNkpUPsN0dOAK0OGjKGMO5K2WuKY/m3ca5UhQ8bDGZ2tN46vJY7x55MhQ8ZoRodUa0mSO9OhDRkyZMxj8JDHF722WEVBX4YMGaMZZIQivZMvixS0QfkqQ4aMcYx0y77W4EzZ6RiZDBkyZjP6L0jTu1q6ueB/hQwZMh7L6DcAasMZncT0w1UZMmSMZqSNAZ728Q19zls2eCFDhowHMu4e1UqTTr5t96GIlSFDxgaMdIufFMC1IjltPMiQIWMHRn94i6d0vFEatDNlyJAxlHGEB292dgYvgiArQ4aMDRi1NicP1qtInWJbhgwZMxi1UjN9PU8EWyMXMmTIGM2oFa5pWtnvrH7Jc2XIkCEjLDs7AZS3EGTIkCGjdg8pbnniiEK5DBkyNmDc1wyoBdm4kJYhQ8ZoRm1sotZIICljOjomQ4aM0YwfFEnbGe75zJAAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3a0U7DMAwF0P3/T49nxFau7YI05/QJlajJEZJxbD8e8fO8fN6tv37z8/31N294MDAwPpaRHPH6TbLxu5X5vr/siIGBcQAjCYXX65OgeY3J98LAwMCYfzpJ+PJAj4GBgTE/1iShzIMvBgYGRh74esdKfpt/HwMD4zRGXnX//5//pL+BgYHxUYxn8akG3ORNNci+2AsDA2M1Iw9w1dGKSZLXPA8GBsYBjPzy+Ww9+ehYD4aBgbGV0Rt6yAtnvW/ml9tvGS4GBsZqRj4GkaR9OXuejGJgYJzAyItiSeDLS3XzhuiLk2BgYKxm5GWyeRP0tuJar++KgYGxlHF9yUxCdjWt7FXSMDAwTmNUGwb5cEYvmOZDGxgYGFsZveRsXuKvjlz80hbFwMBYzai2BKrJ3+RNIQXEwMBYysiDYI7prRyxMTAwDmBU242TZuekSNf8L4GBgbGCMUkck5J9fqz8cvtiug0DA2MpI28A5CWwSYAeDX9gYGAcw7hrnCIJkXk7IUo9MTAwDmDko1fVIl1eaKvu+8jrcxgYGCsY+YW2tzIfI2vujoGBsZTxLD53TThUv1b4O2BgYKxj9FoCebC+i1QdI8PAwNjHmFw1J0lhr1Fa7n9iYGAsYiRHmSSX5ZZk7y6OgYGBETc15wG0HPQxMDAwimuSy21v1OPtSgwMjAMY+dhEcuheQX+yIwYGxm5Gb4NeIyFJGSejYxgYGOsYX3UuapiJrxyLAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CA/" rel="tag">CA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSL-TLS/" rel="tag">SSL/TLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%81%E4%B9%A6/" rel="tag">证书</a></li></ul>
 
 
     </footer>
@@ -202,19 +238,19 @@
   
   <nav class="article-nav">
     
-      <a href="/posts/2392901311/" class="article-nav-link">
+      <a href="/posts/3697389350/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Markdown语法介绍
+            使用SSL/TSL证书加密通讯过程
           
         </div>
       </a>
     
     
-      <a href="/posts/3697389350/" class="article-nav-link">
+      <a href="/posts/895680827/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">使用SSL/TSL证书加密通讯过程</div>
+        <div class="article-nav-title">Web Service</div>
       </a>
     
   </nav>
